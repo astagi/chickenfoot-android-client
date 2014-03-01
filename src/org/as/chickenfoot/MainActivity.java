@@ -1,5 +1,7 @@
 package org.as.chickenfoot;
 
+import org.as.chickenfoot.client.ControlClient;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -22,7 +24,7 @@ public class MainActivity extends Activity {
 	        StrictMode.setThreadPolicy(policy);
         }
         initCommands();
-        client.connect("192.168.0.6", 5005);
+        client.connect("192.168.1.113", 5005);
     }
 
 
