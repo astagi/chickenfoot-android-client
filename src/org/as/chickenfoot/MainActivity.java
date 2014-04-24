@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 	
@@ -24,80 +24,88 @@ public class MainActivity extends Activity {
 	        StrictMode.setThreadPolicy(policy);
         }
         initCommands();
-        client.connect("192.168.1.113", 5005);
+        client.connect("192.168.0.6", 5005);
     }
 
 
     private void initCommands() {
-    	((Button)this.findViewById(R.id.btn_up)).setOnTouchListener(new OnTouchListener() {
+    	((ImageButton)this.findViewById(R.id.btn_up)).setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                	((ImageButton)v).setImageResource(R.drawable.up_on);
                     client.fw();
                     return true;
                 }
                 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
+                	((ImageButton)v).setImageResource(R.drawable.up);
                     client.stopBackMotor();
                     return true;
                 }
 
-                return false;
+                return true;
             }
         });
     	
-    	((Button)this.findViewById(R.id.btn_down)).setOnTouchListener(new OnTouchListener() {
+    	((ImageButton)this.findViewById(R.id.btn_down)).setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                	((ImageButton)v).setImageResource(R.drawable.up_on);
                     client.rw();
                     return true;
                 }
                 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
+                	((ImageButton)v).setImageResource(R.drawable.up);
                     client.stopBackMotor();
                     return true;
                 }
 
-                return false;
+                return true;
             }
         });
     	
-    	((Button)this.findViewById(R.id.btn_left)).setOnTouchListener(new OnTouchListener() {
+    	((ImageButton)this.findViewById(R.id.btn_left)).setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                	((ImageButton)v).setImageResource(R.drawable.up_on);
                     client.rl();
                     return true;
                 }
                 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
+                	((ImageButton)v).setImageResource(R.drawable.up);
                     client.stopFrontMotor();
                     return true;
                 }
 
-                return false;
+                return true;
             }
         });
     	
-    	((Button)this.findViewById(R.id.btn_right)).setOnTouchListener(new OnTouchListener() {
+    	((ImageButton)this.findViewById(R.id.btn_right)).setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+                	((ImageButton)v).setImageResource(R.drawable.up_on);
                     client.rr();
                     return true;
                 }
                 
                 if (event.getAction() == MotionEvent.ACTION_UP ) {
+                	((ImageButton)v).setImageResource(R.drawable.up);
                     client.stopFrontMotor();
                     return true;
                 }
 
-                return false;
+                return true;
             }
         });
 	}
