@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class ControlClient {
 
@@ -17,6 +18,7 @@ public class ControlClient {
 	private MapElement rrCommand;
 	private MapElement stopBackMotorCommand;
 	private MapElement stopFrontMotorCommand;
+	private ArrayList<ClientListener> listeners = new ArrayList<ClientListener>();
 	
 	public ControlClient() {
 		fwCommand = new MapElement();
@@ -43,11 +45,18 @@ public class ControlClient {
 		stopFrontMotorCommand.setAction("stop");
 	}
 	
+	public boolean isConnected() {
+		if(socket == null)
+			return false;
+		return socket.isConnected();
+	}
+	
 	private void send(String message) {
 		try {
 			PrintWriter out = new PrintWriter(new BufferedWriter(
 					new OutputStreamWriter(socket.getOutputStream())), true);
 			out.println(message);
+			return;
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -55,17 +64,29 @@ public class ControlClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		for (ClientListener listener : listeners)
+			listener.onConnectionError();
+	}
+	
+	public void addListener(ClientListener listener) {
+		listeners.add(listener);
 	}
 
 	public void connect(String host, int port) {
 		try {
 			InetAddress serverAddr = InetAddress.getByName(host);
 			socket = new Socket(serverAddr, port);
+			for (ClientListener listener : listeners)
+				listener.onConnect();
+			return;
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		for (ClientListener listener : listeners)
+			listener.onConnectionError();
 	}
 
 	public void fw() {
