@@ -20,13 +20,18 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="org.as.chickenfoot.MainActivity"
-            android:screenOrientation="landscape"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="org.as.chickenfoot.SettingsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

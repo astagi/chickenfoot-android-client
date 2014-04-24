@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="#353535"
     android:orientation="horizontal" >
 
     <LinearLayout
@@ -54,10 +54,36 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/connection_status_panel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_symbol"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:onClick="startConnection"
+            android:src="@drawable/symbol" />
+
+        <TextView
+            android:id="@+id/connection_status"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:orientation="horizontal" >
 
         <ImageButton
@@ -73,6 +99,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@null"
+            android:onClick="openSettings"
             android:src="@drawable/settings_button" />
     </LinearLayout>
 

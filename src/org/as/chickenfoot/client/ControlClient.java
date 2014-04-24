@@ -19,6 +19,8 @@ public class ControlClient {
 	private MapElement stopBackMotorCommand;
 	private MapElement stopFrontMotorCommand;
 	private ArrayList<ClientListener> listeners = new ArrayList<ClientListener>();
+	private String host = "";
+	private int port = 0;
 	
 	public ControlClient() {
 		fwCommand = new MapElement();
@@ -72,8 +74,14 @@ public class ControlClient {
 	public void addListener(ClientListener listener) {
 		listeners.add(listener);
 	}
+	
+	public String getFormattedAddress() {
+		return this.host + ":" + this.port;
+	}
 
 	public void connect(String host, int port) {
+		this.host = host;
+		this.port = port;
 		try {
 			InetAddress serverAddr = InetAddress.getByName(host);
 			socket = new Socket(serverAddr, port);
